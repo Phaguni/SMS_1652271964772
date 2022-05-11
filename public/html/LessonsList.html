@@ -1,0 +1,125 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	LessonsList
+	
+	Links : 	LessonsEdit
+					/lessonses/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="LessonsListController">
+	
+	<h1>LessonsList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="assignment">Assignment</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="checkbox" ng-model="search.assignment" class="form-control" name="assignment" id="assignment" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="class">Class</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.class" class="form-control" name="class" id="class" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="done">Done</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="checkbox" ng-model="search.done" class="form-control" name="done" id="done" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="lessonname">Lessonname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.lessonname" class="form-control" name="lessonname" id="lessonname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="lessonno">Lessonno</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.lessonno" class="form-control" name="lessonno" id="lessonno" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="subject">Subject</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.subject" class="form-control" name="subject" id="subject" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="teacher">Teacher</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.teacher" class="form-control" name="teacher" id="teacher" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="test">Test</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="checkbox" ng-model="search.test" class="form-control" name="test" id="test" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>assignment</th>
+				<th>class</th>
+				<th>done</th>
+				<th>lessonname</th>
+				<th>lessonno</th>
+				<th>subject</th>
+				<th>teacher</th>
+				<th>test</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  assignment:search.assignment,  class:search.class,  done:search.done,  lessonname:search.lessonname,  lessonno:search.lessonno,  subject:search.subject,  teacher:search.teacher,  test:search.test,  }">
+				<td ng-bind="item._id" ng-link="/lessonses/{{item._id}}"></td>
+				<td ng-bind="item.assignment"></td>
+				<td ng-bind="item.class"></td>
+				<td ng-bind="item.done"></td>
+				<td ng-bind="item.lessonname"></td>
+				<td ng-bind="item.lessonno"></td>
+				<td ng-bind="item.subject"></td>
+				<td ng-bind="item.teacher"></td>
+				<td ng-bind="item.test"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   assignment:search.assignment,  class:search.class,  done:search.done,  lessonname:search.lessonname,  lessonno:search.lessonno,  subject:search.subject,  teacher:search.teacher,  test:search.test,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/lessonses/new">New</button>
+	
+</div>

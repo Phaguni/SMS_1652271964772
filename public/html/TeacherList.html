@@ -1,0 +1,85 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	TeacherList
+	
+	Links : 	TeacherEdit
+					/teachers/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="TeacherListController">
+	
+	<h1>TeacherList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="class">Class</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.class" class="form-control" name="class" id="class" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="firstname">Firstname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.firstname" class="form-control" name="firstname" id="firstname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="lastname">Lastname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.lastname" class="form-control" name="lastname" id="lastname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="middlename">Middlename</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.middlename" class="form-control" name="middlename" id="middlename" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>class</th>
+				<th>firstname</th>
+				<th>lastname</th>
+				<th>middlename</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  class:search.class,  firstname:search.firstname,  lastname:search.lastname,  middlename:search.middlename,  }">
+				<td ng-bind="item._id" ng-link="/teachers/{{item._id}}"></td>
+				<td ng-bind="item.class"></td>
+				<td ng-bind="item.firstname"></td>
+				<td ng-bind="item.lastname"></td>
+				<td ng-bind="item.middlename"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   class:search.class,  firstname:search.firstname,  lastname:search.lastname,  middlename:search.middlename,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/teachers/new">New</button>
+	
+</div>

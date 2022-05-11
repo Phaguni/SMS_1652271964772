@@ -1,0 +1,95 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	ClassList
+	
+	Links : 	ClassEdit
+					/classes/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="ClassListController">
+	
+	<h1>ClassList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="class">Class</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.class" class="form-control" name="class" id="class" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="classteacher">Classteacher</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.classteacher" class="form-control" name="classteacher" id="classteacher" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="noofstudents">Noofstudents</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.noofstudents" class="form-control" name="noofstudents" id="noofstudents" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="noofsubjects">Noofsubjects</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.noofsubjects" class="form-control" name="noofsubjects" id="noofsubjects" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="roomno">Roomno</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.roomno" class="form-control" name="roomno" id="roomno" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>class</th>
+				<th>classteacher</th>
+				<th>noofstudents</th>
+				<th>noofsubjects</th>
+				<th>roomno</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  class:search.class,  classteacher:search.classteacher,  noofstudents:search.noofstudents,  noofsubjects:search.noofsubjects,  roomno:search.roomno,  }">
+				<td ng-bind="item._id" ng-link="/classes/{{item._id}}"></td>
+				<td ng-bind="item.class"></td>
+				<td ng-bind="item.classteacher"></td>
+				<td ng-bind="item.noofstudents"></td>
+				<td ng-bind="item.noofsubjects"></td>
+				<td ng-bind="item.roomno"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   class:search.class,  classteacher:search.classteacher,  noofstudents:search.noofstudents,  noofsubjects:search.noofsubjects,  roomno:search.roomno,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/classes/new">New</button>
+	
+</div>

@@ -1,0 +1,251 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	TestEdit
+	
+	Links : 	
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="TestEditController">
+	
+	<h1>
+		<span>TestEdit</span>
+		{{obj.name}}
+	</h1>
+	
+	
+	
+	<div class="well">
+		<form name="skaffolderForm" class="container-fluid mt-20">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="averageresult">Averageresult</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.averageresult.$invalid }">
+					<input  type="text" ng-model="obj.averageresult"  class="form-control" name="averageresult" id="averageresult" >
+		 			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="class">Class</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.class.$invalid }">
+					<input string-to-number type="number" ng-model="obj.class"  class="form-control" name="class" id="class" required>
+		 			<p ng-show="skaffolderForm.class.$invalid" class="help-block">Value is required</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="date">Date</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.date.$invalid }">
+					<input string-to-date type="date" ng-model="obj.date" ng-value="obj.date|date:'yyyy-MM-dd'" class="form-control" name="date" id="date" required>
+		 			<p ng-show="skaffolderForm.date.$invalid" class="help-block">Value is required</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="lessonno">Lessonno</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.lessonno.$invalid }">
+					<input string-to-number type="number" ng-model="obj.lessonno"  class="form-control" name="lessonno" id="lessonno" required>
+		 			<p ng-show="skaffolderForm.lessonno.$invalid" class="help-block">Value is required</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="maxmarks">Maxmarks</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.maxmarks.$invalid }">
+					<input string-to-number type="number" ng-model="obj.maxmarks"  class="form-control" name="maxmarks" id="maxmarks" >
+		 			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="period">Period</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.period.$invalid }">
+					<input string-to-number type="number" ng-model="obj.period"  class="form-control" name="period" id="period" >
+		 			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="subjectname">Subjectname</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.subjectname.$invalid }">
+					<input  type="text" ng-model="obj.subjectname"  class="form-control" name="subjectname" id="subjectname" required>
+		 			<p ng-show="skaffolderForm.subjectname.$invalid" class="help-block">Value is required</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="teacher">Teacher</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.teacher.$invalid }">
+					<input  type="text" ng-model="obj.teacher"  class="form-control" name="teacher" id="teacher" required>
+		 			<p ng-show="skaffolderForm.teacher.$invalid" class="help-block">Value is required</p>
+				</div>
+			</div>
+			
+			
+			<h2>Relations</h2>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="_Class">
+						_Class
+						
+				 		<span class="dropdown">
+							<div role="button" data-toggle="dropdown" class="btn btn-xxs">
+								<i class="glyphicon glyphicon-plus green"></i>
+							</div>
+				            
+				    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+				              
+				              <li ng-repeat="item in list_Class" ng-class="{disabled: contain_Class(item._id)}" >
+				                <a tabindex="-1" href="#" ng-click="$event.preventDefault(); contain_Class(item._id) || add_Class(item._id)">{{item._id}}</a>
+				              </li>
+	              
+				            </ul>
+				        </span>
+					</label>
+				</div>
+				<div class="col-sm-9 form-group">
+					<div ng-repeat="item in obj._Class track by $index">
+						<div ng-click="remove_Class($index)" class="btn btn-xxs" >
+							<i class="glyphicon glyphicon-trash"></i>
+						</div>
+						{{item}}
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="_Lessons">
+						_Lessons
+						
+				 		<span class="dropdown">
+							<div role="button" data-toggle="dropdown" class="btn btn-xxs">
+								<i class="glyphicon glyphicon-plus green"></i>
+							</div>
+				            
+				    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+				              
+				              <li ng-repeat="item in list_Lessons" ng-class="{disabled: contain_Lessons(item._id)}" >
+				                <a tabindex="-1" href="#" ng-click="$event.preventDefault(); contain_Lessons(item._id) || add_Lessons(item._id)">{{item._id}}</a>
+				              </li>
+	              
+				            </ul>
+				        </span>
+					</label>
+				</div>
+				<div class="col-sm-9 form-group">
+					<div ng-repeat="item in obj._Lessons track by $index">
+						<div ng-click="remove_Lessons($index)" class="btn btn-xxs" >
+							<i class="glyphicon glyphicon-trash"></i>
+						</div>
+						{{item}}
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="_Subjects">
+						_Subjects
+						
+				 		<span class="dropdown">
+							<div role="button" data-toggle="dropdown" class="btn btn-xxs">
+								<i class="glyphicon glyphicon-plus green"></i>
+							</div>
+				            
+				    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+				              
+				              <li ng-repeat="item in list_Subjects" ng-class="{disabled: contain_Subjects(item._id)}" >
+				                <a tabindex="-1" href="#" ng-click="$event.preventDefault(); contain_Subjects(item._id) || add_Subjects(item._id)">{{item._id}}</a>
+				              </li>
+	              
+				            </ul>
+				        </span>
+					</label>
+				</div>
+				<div class="col-sm-9 form-group">
+					<div ng-repeat="item in obj._Subjects track by $index">
+						<div ng-click="remove_Subjects($index)" class="btn btn-xxs" >
+							<i class="glyphicon glyphicon-trash"></i>
+						</div>
+						{{item}}
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="_Teachers">
+						_Teachers
+						
+				 		<span class="dropdown">
+							<div role="button" data-toggle="dropdown" class="btn btn-xxs">
+								<i class="glyphicon glyphicon-plus green"></i>
+							</div>
+				            
+				    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+				              
+				              <li ng-repeat="item in list_Teachers" ng-class="{disabled: contain_Teachers(item._id)}" >
+				                <a tabindex="-1" href="#" ng-click="$event.preventDefault(); contain_Teachers(item._id) || add_Teachers(item._id)">{{item._id}}</a>
+				              </li>
+	              
+				            </ul>
+				        </span>
+					</label>
+				</div>
+				<div class="col-sm-9 form-group">
+					<div ng-repeat="item in obj._Teachers track by $index">
+						<div ng-click="remove_Teachers($index)" class="btn btn-xxs" >
+							<i class="glyphicon glyphicon-trash"></i>
+						</div>
+						{{item}}
+					</div>
+				</div>
+			</div>
+			
+			
+			<h2>External Relations</h2>
+			
+	
+			<div class="row mt-40">
+				<button ng-if="obj._id" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">
+					<i class="glyphicon glyphicon-trash"></i> Remove
+				</button>
+				
+				<button type="submit" class="btn btn-primary pull-right" ng-disabled="skaffolderForm.$invalid" ng-click="save()">Save</button>
+			    <button class="btn btn-link pull-right" ng-link="/tests/">Back to List</button>
+			</div>
+			<div class="clearfix"></div>
+		</form>
+		
+	</div>
+	
+	
+	<!-- MODAL REMOVE -->
+	<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Delete item</h4>
+				</div>
+				<div class="modal-body">
+					Do you want confirm delete? 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove()">YES</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

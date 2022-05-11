@@ -1,0 +1,95 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	SubjectsList
+	
+	Links : 	SubjectsEdit
+					/subjectses/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="SubjectsListController">
+	
+	<h1>SubjectsList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="averageresultinlastexam">Averageresultinlastexam</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.averageresultinlastexam" class="form-control" name="averageresultinlastexam" id="averageresultinlastexam" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="class">Class</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.class" class="form-control" name="class" id="class" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="name">Name</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.name" class="form-control" name="name" id="name" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="period">Period</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.period" class="form-control" name="period" id="period" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="teacher">Teacher</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.teacher" class="form-control" name="teacher" id="teacher" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>averageresultinlastexam</th>
+				<th>class</th>
+				<th>name</th>
+				<th>period</th>
+				<th>teacher</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  averageresultinlastexam:search.averageresultinlastexam,  class:search.class,  name:search.name,  period:search.period,  teacher:search.teacher,  }">
+				<td ng-bind="item._id" ng-link="/subjectses/{{item._id}}"></td>
+				<td ng-bind="item.averageresultinlastexam"></td>
+				<td ng-bind="item.class"></td>
+				<td ng-bind="item.name"></td>
+				<td ng-bind="item.period"></td>
+				<td ng-bind="item.teacher"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   averageresultinlastexam:search.averageresultinlastexam,  class:search.class,  name:search.name,  period:search.period,  teacher:search.teacher,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/subjectses/new">New</button>
+	
+</div>

@@ -1,0 +1,135 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	StudentsList
+	
+	Links : 	StudentsEdit
+					/studentses/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="StudentsListController">
+	
+	<h1>StudentsList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="class">Class</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.class" class="form-control" name="class" id="class" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="dateofbirth">Dateofbirth</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="date" ng-model="search.dateofbirth" class="form-control" name="dateofbirth" id="dateofbirth" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="fathersname">Fathersname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.fathersname" class="form-control" name="fathersname" id="fathersname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="firstname">Firstname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.firstname" class="form-control" name="firstname" id="firstname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="lastname">Lastname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.lastname" class="form-control" name="lastname" id="lastname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="middlename">Middlename</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.middlename" class="form-control" name="middlename" id="middlename" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="mothersname">Mothersname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.mothersname" class="form-control" name="mothersname" id="mothersname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="percentageinlastexam">Percentageinlastexam</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.percentageinlastexam" class="form-control" name="percentageinlastexam" id="percentageinlastexam" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="rollno">Rollno</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.rollno" class="form-control" name="rollno" id="rollno" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>class</th>
+				<th>dateofbirth</th>
+				<th>fathersname</th>
+				<th>firstname</th>
+				<th>lastname</th>
+				<th>middlename</th>
+				<th>mothersname</th>
+				<th>percentageinlastexam</th>
+				<th>rollno</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  class:search.class,  dateofbirth:dateFilter(search.dateofbirth),  fathersname:search.fathersname,  firstname:search.firstname,  lastname:search.lastname,  middlename:search.middlename,  mothersname:search.mothersname,  percentageinlastexam:search.percentageinlastexam,  rollno:search.rollno,  }">
+				<td ng-bind="item._id" ng-link="/studentses/{{item._id}}"></td>
+				<td ng-bind="item.class"></td>
+				<td ng-bind="item.dateofbirth | date"></td>
+				<td ng-bind="item.fathersname"></td>
+				<td ng-bind="item.firstname"></td>
+				<td ng-bind="item.lastname"></td>
+				<td ng-bind="item.middlename"></td>
+				<td ng-bind="item.mothersname"></td>
+				<td ng-bind="item.percentageinlastexam"></td>
+				<td ng-bind="item.rollno"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   class:search.class,  dateofbirth:dateFilter(search.dateofbirth),  fathersname:search.fathersname,  firstname:search.firstname,  lastname:search.lastname,  middlename:search.middlename,  mothersname:search.mothersname,  percentageinlastexam:search.percentageinlastexam,  rollno:search.rollno,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/studentses/new">New</button>
+	
+</div>

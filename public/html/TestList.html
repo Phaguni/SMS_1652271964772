@@ -1,0 +1,125 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	TestList
+	
+	Links : 	TestEdit
+					/tests/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="TestListController">
+	
+	<h1>TestList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="averageresult">Averageresult</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.averageresult" class="form-control" name="averageresult" id="averageresult" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="class">Class</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.class" class="form-control" name="class" id="class" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="date">Date</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="date" ng-model="search.date" class="form-control" name="date" id="date" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="lessonno">Lessonno</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.lessonno" class="form-control" name="lessonno" id="lessonno" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="maxmarks">Maxmarks</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.maxmarks" class="form-control" name="maxmarks" id="maxmarks" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="period">Period</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="number" ng-model="search.period" class="form-control" name="period" id="period" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="subjectname">Subjectname</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.subjectname" class="form-control" name="subjectname" id="subjectname" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="teacher">Teacher</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.teacher" class="form-control" name="teacher" id="teacher" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>averageresult</th>
+				<th>class</th>
+				<th>date</th>
+				<th>lessonno</th>
+				<th>maxmarks</th>
+				<th>period</th>
+				<th>subjectname</th>
+				<th>teacher</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  averageresult:search.averageresult,  class:search.class,  date:dateFilter(search.date),  lessonno:search.lessonno,  maxmarks:search.maxmarks,  period:search.period,  subjectname:search.subjectname,  teacher:search.teacher,  }">
+				<td ng-bind="item._id" ng-link="/tests/{{item._id}}"></td>
+				<td ng-bind="item.averageresult"></td>
+				<td ng-bind="item.class"></td>
+				<td ng-bind="item.date | date"></td>
+				<td ng-bind="item.lessonno"></td>
+				<td ng-bind="item.maxmarks"></td>
+				<td ng-bind="item.period"></td>
+				<td ng-bind="item.subjectname"></td>
+				<td ng-bind="item.teacher"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   averageresult:search.averageresult,  class:search.class,  date:dateFilter(search.date),  lessonno:search.lessonno,  maxmarks:search.maxmarks,  period:search.period,  subjectname:search.subjectname,  teacher:search.teacher,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/tests/new">New</button>
+	
+</div>
